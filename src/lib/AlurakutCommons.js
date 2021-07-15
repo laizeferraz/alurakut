@@ -25,7 +25,7 @@ export function AlurakutMenu({ githubUser }) {
 
         <nav style={{ flex: 1 }}>
           {[
-            { name: "Start", slug: "/" },
+            { name: "Home", slug: "/" },
             { name: "Friends", slug: "/friends" },
             { name: "Communities", slug: "/communities" },
           ].map((menuItem) => (
@@ -202,7 +202,7 @@ export function AlurakutProfileSidebarMenuDefault() {
         </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/book.svg`} />
-          Notes
+          Scrapbook
         </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/camera.svg`} />
@@ -210,7 +210,7 @@ export function AlurakutProfileSidebarMenuDefault() {
         </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/sun.svg`} />
-          Testimonies
+          Testimonials
         </a>
       </nav>
       <hr />
@@ -251,8 +251,8 @@ export function OrkutNostalgicIconSet(props) {
   return (
     <OrkutNostalgicIconSet.List>
       {[
-        { name: "Notes", slug: "notes", icon: "book" },
-        { name: "Phots", slug: "photos", icon: "camera" },
+        { name: "Scraps", slug: "scraps", icon: "book" },
+        { name: "Photos", slug: "photos", icon: "camera" },
         { name: "Videos", slug: "videos", icon: "video-camera" },
         { name: "Fan", slug: "fan", icon: "star" },
         { name: "Messages", slug: "messages", icon: "email" },

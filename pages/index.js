@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MainGrid } from "../src/components/MainGrid/index";
 import { Box } from "../src/components/Box/index";
 import {
@@ -28,6 +28,28 @@ function ProfileSidebar(props) {
   );
 }
 
+function ProfileRelationsBox(propriedades) {
+  return (
+    <ProfileRelationsBoxWrapper>
+      <h2 className="smallTitle">
+        {propriedades.title} ({propriedades.items.length})
+      </h2>
+      <ul>
+        {/* {seguidores.map((itemAtual) => {
+          return (
+            <li key={itemAtual}>
+              <a href={`https://github.com/${itemAtual}.png`}>
+                <img src={itemAtual.image} />
+                <span>{itemAtual.title}</span>
+              </a>
+            </li>
+          )
+        })} */}
+      </ul>
+    </ProfileRelationsBoxWrapper>
+  );
+}
+
 export default function Home() {
   const [communities, setCommunities] = useState([]);
   const githubUser = "laizeferraz";
@@ -39,6 +61,19 @@ export default function Home() {
     "marcobrunodev",
     "felipefialho",
   ];
+
+  const [followers, setFollowers] = useState([]);
+
+  useEffect(function () {
+    fetch("https://api.github.com/users/peas/followers")
+      .then(function (data) {
+        return data.json();
+      })
+      .then(function (response) {
+        setFollowers(response);
+      });
+  }, []);
+
   return (
     <div>
       <AlurakutMenu />
@@ -59,11 +94,12 @@ export default function Home() {
                 e.preventDefault();
                 const formData = new FormData(e.target);
                 const community = {
-                  id: new Date().toISOString,
+                  id: new Date().toISOString(),
                   title: formData.get("title"),
                   image: formData.get("image"),
                 };
                 setCommunities([...communities, community]);
+                console.log(community);
               }}
             >
               <div>
@@ -105,6 +141,7 @@ export default function Home() {
               })}
             </ul>
           </ProfileRelationsBoxWrapper>
+          <ProfileRelationsBox title="Followers" items={followers} />
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle">
               My Communities ({communities.length})
