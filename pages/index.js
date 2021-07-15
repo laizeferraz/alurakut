@@ -10,7 +10,7 @@ import { ProfileRelationsBoxWrapper } from "../src/components/ProfileRelationshi
 
 function ProfileSidebar(props) {
   return (
-    <Box>
+    <Box as="aside">
       <img
         src={`https://github.com/${props.githubUser}.png`}
         alt="profile"
@@ -111,7 +111,7 @@ export default function Home() {
             </h2>
 
             <ul>
-              {communities.map((community, index) => {
+              {communities.map((community) => {
                 return (
                   <li key={community.id}>
                     <a href={`/users/${community.title}`}>
