@@ -29,7 +29,7 @@ function ProfileSidebar(props) {
 }
 
 export default function Home() {
-  const [communities, setCommunities] = useState(["Alura"]);
+  const [communities, setCommunities] = useState([]);
   const githubUser = "laizeferraz";
   const friends = [
     "juunegreiros",
@@ -57,7 +57,13 @@ export default function Home() {
               action=""
               onSubmit={(e) => {
                 e.preventDefault();
-                setCommunities([...communities, "Alura Stars"]);
+                const formData = new FormData(e.target);
+                const community = {
+                  id: new Date().toISOString,
+                  title: formData.get("title"),
+                  image: formData.get("image"),
+                };
+                setCommunities([...communities, community]);
               }}
             >
               <div>
@@ -89,8 +95,8 @@ export default function Home() {
             <ul>
               {friends.map((friend, index) => {
                 return (
-                  <li>
-                    <a href={`/users/${friend}`} key={index++}>
+                  <li key={index++}>
+                    <a href={`/users/${friend}`}>
                       <img src={`https://github.com/${friend}.png`} />
                       <span>{friend}</span>
                     </a>
@@ -100,15 +106,17 @@ export default function Home() {
             </ul>
           </ProfileRelationsBoxWrapper>
           <ProfileRelationsBoxWrapper>
-            <h2 className="smallTitle">Friends ({friends.length})</h2>
+            <h2 className="smallTitle">
+              My Communities ({communities.length})
+            </h2>
 
             <ul>
               {communities.map((community, index) => {
                 return (
-                  <li>
-                    <a href={`/users/${community}`} key={index++}>
-                      <img src={`http://placehold.it/300x300`} />
-                      <span>{community}</span>
+                  <li key={community.id}>
+                    <a href={`/users/${community.title}`}>
+                      <img src={community.image} />
+                      <span>{community.title}</span>
                     </a>
                   </li>
                 );
