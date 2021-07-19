@@ -51,6 +51,7 @@ function ProfileRelationsBox(propriedades) {
 }
 
 export default function Home() {
+  const user = "laizeferraz";
   const [communities, setCommunities] = useState([]);
   const githubUser = "laizeferraz";
   const friends = [
@@ -118,10 +119,21 @@ export default function Home() {
                 e.preventDefault();
                 const formData = new FormData(e.target);
                 const community = {
-                  id: new Date().toISOString(),
                   title: formData.get("title"),
-                  image: formData.get("image"),
+                  imageUrl: formData.get("image"),
+                  creatorSlug: user,
                 };
+
+                fetch("/api/communities", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(community),
+                }).then(async (response) => {
+                  const data = await response.json();
+                  console.log(data);
+                });
                 setCommunities([...communities, community]);
                 console.log(community);
               }}
