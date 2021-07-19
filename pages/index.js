@@ -72,6 +72,30 @@ export default function Home() {
       .then(function (response) {
         setFollowers(response);
       });
+    // Dato CMS API GraphQL
+    fetch("https://graphql.datocms.com/", {
+      method: "POST",
+      headers: {
+        Authorization: "361eac896f4d8fd3d6e7f81d65a518",
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: `query {  allCommunities{
+            title
+            id
+            imageUrl
+            creatorSlug
+          },
+      }`,
+      }),
+    })
+      .then((response) => response.json())
+      .then((completeResponse) => {
+        const communitiesData = completeResponse.data.allCommunities;
+        console.log(communitiesData);
+        setCommunities(communitiesData);
+      });
   }, []);
 
   return (
@@ -151,8 +175,8 @@ export default function Home() {
               {communities.map((community) => {
                 return (
                   <li key={community.id}>
-                    <a href={`/users/${community.title}`}>
-                      <img src={community.image} />
+                    <a href={`/communities/${community.id}`}>
+                      <img src={community.imageUrl} />
                       <span>{community.title}</span>
                     </a>
                   </li>
