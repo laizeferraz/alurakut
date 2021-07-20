@@ -5,7 +5,7 @@ import nookies from "nookies";
 
 export default function LoginScreen() {
   const router = useRouter();
-  const [githubUser, setGithubUser] = useState("laizeferraz");
+  const [githubUser, setGithubUser] = useState("");
 
   return (
     <main

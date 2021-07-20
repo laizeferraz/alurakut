@@ -169,11 +169,14 @@ export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
   const token = cookies.USER_TOKEN;
 
-  const { isAuthenticated } = await fetch("http://localhost:3000/api/auth", {
-    headers: {
-      Authorization: token,
-    },
-  }).then((response) => response.json());
+  const { isAuthenticated } = await fetch(
+    "https://alurakut-nu-umber.vercel.app/api/auth",
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  ).then((response) => response.json());
 
   // const isAuthenticated = false;
 
