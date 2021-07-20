@@ -1,56 +1,12 @@
 import { useState, useEffect } from "react";
 import nookies from "nookies";
 import jwt from "jsonwebtoken";
-import { MainGrid } from "../src/components/MainGrid/index";
-import { Box } from "../src/components/Box/index";
-import {
-  AlurakutMenu,
-  AlurakutProfileSidebarMenuDefault,
-  OrkutNostalgicIconSet,
-} from "../src/lib/AlurakutCommons";
-import { ProfileRelationsBoxWrapper } from "../src/components/ProfileRelationships";
-
-function ProfileSidebar(props) {
-  return (
-    <Box as="aside">
-      <img
-        src={`https://github.com/${props.githubUser}.png`}
-        alt="profile"
-        style={{ borderRadius: "0.5em" }}
-      />
-      <hr />
-
-      <a className="boxLink" href={`https://github.com/${props.githubUser}`}>
-        @{props.githubUser}
-      </a>
-
-      <hr />
-      <AlurakutProfileSidebarMenuDefault />
-    </Box>
-  );
-}
-
-function ProfileRelationsBox(props) {
-  return (
-    <ProfileRelationsBoxWrapper>
-      <h2 className="smallTitle">
-        {props.title} ({props.items.length})
-      </h2>
-      <ul>
-        {/* {seguidores.map((itemAtual) => {
-          return (
-            <li key={itemAtual}>
-              <a href={`https://github.com/${itemAtual}.png`}>
-                <img src={itemAtual.image} />
-                <span>{itemAtual.title}</span>
-              </a>
-            </li>
-          )
-        })} */}
-      </ul>
-    </ProfileRelationsBoxWrapper>
-  );
-}
+import { MainGrid } from "../components/MainGrid/styles";
+import { Box } from "../components/Box/styles";
+import { AlurakutMenu, OrkutNostalgicIconSet } from "../lib/AlurakutCommons";
+import { ProfileRelationsBoxWrapper } from "../components/ProfileRelationships/styles";
+import ProfileRelationsBox from "../components/ProfileRelationships";
+import ProfileSidebar from "../components/ProfileSidebar";
 
 export default function Home(props) {
   const user = props.githubUser;
@@ -179,7 +135,11 @@ export default function Home(props) {
               })}
             </ul>
           </ProfileRelationsBoxWrapper>
-          <ProfileRelationsBox title="Followers" items={followers} />
+          <ProfileRelationsBox
+            title="Followers"
+            items={followers}
+            githubUser={props.githubUser}
+          />
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle">
               My Communities ({communities.length})
@@ -214,6 +174,8 @@ export async function getServerSideProps(ctx) {
       Authorization: token,
     },
   }).then((response) => response.json());
+
+  // const isAuthenticated = false;
 
   console.log("isAuthenticated", isAuthenticated);
 
