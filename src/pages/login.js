@@ -21,16 +21,15 @@ export default function LoginScreen() {
           <img src="https://alurakut.vercel.app/logo.svg" />
 
           <p>
-            <strong>Conecte-se</strong> aos seus amigos e familiares usando
-            recados e mensagens instantâneas
+            <strong>Connect</strong> with your friends and family using scraps
+            and quick messages
           </p>
           <p>
-            <strong>Conheça</strong> novas pessoas através de amigos de seus
-            amigos e comunidades
+            <strong>Meet</strong> new people using your friends connections and
+            communities
           </p>
           <p>
-            <strong>Compartilhe</strong> seus vídeos, fotos e paixões em um só
-            lugar
+            <strong>Share</strong> videos, photos and passions in just one place
           </p>
         </section>
 
@@ -58,7 +57,7 @@ export default function LoginScreen() {
             }}
           >
             <p>
-              Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
+              Access now with your <strong>GitHub</strong> account!
             </p>
             <input
               placeholder="User"
@@ -73,9 +72,9 @@ export default function LoginScreen() {
 
           <footer className="box">
             <p>
-              Ainda não é membro? <br />
+              Do not have an account? <br />
               <a href="/login">
-                <strong>ENTRAR JÁ</strong>
+                <strong>SIGN UP NOW</strong>
               </a>
             </p>
           </footer>
@@ -83,9 +82,9 @@ export default function LoginScreen() {
 
         <footer className="footerArea">
           <p>
-            © 2021 alura.com.br - <a href="/">Sobre o Orkut.br</a> -{" "}
-            <a href="/">Centro de segurança</a> - <a href="/">Privacidade</a> -{" "}
-            <a href="/">Termos</a> - <a href="/">Contato</a>
+            © 2021 alura.com.br - <a href="/">About Orkut</a> -{" "}
+            <a href="/">Security Center</a> - <a href="/">Privacy</a> -{" "}
+            <a href="/">Terms</a> - <a href="/">Contact</a>
           </p>
         </footer>
       </div>
